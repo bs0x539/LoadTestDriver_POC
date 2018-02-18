@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="loadtestdriver_poc:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="loadtestdriver_poc-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="loadtestdriver_poc:war exploded" />
+    </root>
+  </artifact>
+</component>
