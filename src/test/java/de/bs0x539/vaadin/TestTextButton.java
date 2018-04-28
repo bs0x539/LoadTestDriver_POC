@@ -12,24 +12,10 @@ import org.vaadin.johannest.loadtestdriver.LoadTestDriverBuilder;
 
 import java.io.IOException;
 
-public class TestTextButton extends TestBenchTestCase {
-
-  @Rule
-  public ScreenshotOnFailureRule screenshotOnFailureRule = new ScreenshotOnFailureRule(this, true);
-
-  @Before
-  public void init() {
-    final WebDriver driver = new LoadTestDriverBuilder().withIpAddress(LoadTestDriver.getLocalIpAddress())
-      .withNumberOfConcurrentUsers(1).withRampUpTimeInSeconds(1).withTestName("TestTextButton")
-      .withPath("gatling").withResourcesPath("./gatling").withStaticResourcesIngnoring().withTestRefactoring()
-      .build();
-    setDriver(driver);
-  }
+public class TestTextButton extends AbstractLoadTestDriverTest {
 
   @Test
   public void testIt() throws IOException {
-    getDriver().get("http://xps13:8080/");
     $(ButtonElement.class).id("textButton").click();
-    testBench().compareScreen("x");
   }
 }
