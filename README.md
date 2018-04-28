@@ -1,52 +1,51 @@
 loadtestdriver_poc
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
-
+Simple Vaadin application which demonstrates some bugs in the LoadTestDriver.
 
 Workflow
 ========
 
-To compile the entire project, run "mvn install".
+Compile
+-------
+To compile the entire project, run `mvn install`.
 
-To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
+To run the application, run `mvn jetty:run` and open http://localhost:8080/ .
 
-To produce a deployable production mode WAR:
-- change productionMode to true in the servlet class configuration (nested in the UI class)
-- run "mvn clean package"
-- test the war file with "mvn jetty:run-war"
+Prepare for Test
+----------------
 
-Client-Side compilation
--------------------------
+Download PhantomJS and place `phantomjs` executable in `$PATH`.
+* Statically linked binary: https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
 
-The generated maven project is using an automatically generated widgetset by default. 
-When you add a dependency that needs client-side compilation, the maven plugin will 
-automatically generate it for you. Your own client-side customisations can be added into
-package "client".
+**Caveats:**
 
-Debugging client side code
-  - run "mvn vaadin:run-codeserver" on a separate console while the application is running
-  - activate Super Dev Mode in the debug window of the application
+* PhantomJS >=2.0.0 must be installed
+* Java 8
+* `ScreenshotOnFailureRule` has to be used because otherwise the scala scripts are not being saved as files.
+* Due to PhantomJS limitations the AUT must **not** be accessed using `localhost` or `127.0.0.1`. Use real Hostname/IP instead.
+* Gatling-Recorder requires a GUI. Can be disabled when initializing the WebDriver but that does not work.
 
-Developing a theme using the runtime compiler
--------------------------
 
-When developing the theme, Vaadin can be configured to compile the SASS based
-theme at runtime in the server. This way you can just modify the scss files in
-your IDE and reload the browser to see changes.
+Test
+----
 
-To use the runtime compilation, open pom.xml and comment out the compile-theme 
-goal from vaadin-maven-plugin configuration. To remove a possibly existing 
-pre-compiled theme, run "mvn clean package" once.
+* Run `mvn test`
+* Gatling-Recorder window should show up
+* Scala scripts as well as HTTP request and response files will be places in `./gatling/` directory
 
-When using the runtime compiler, running the application in the "run" mode 
-(rather than in "debug" mode) can speed up consecutive theme compilations
-significantly.
 
-It is highly recommended to disable runtime compilation for production WAR files.
+Execute Load Tests with Gatling
+-------------------------------
 
-Using Vaadin pre-releases
--------------------------
+* Download Gatling: https://gatling.io/download/
+* Extract downloaded zip file
+* Change into extracted `bin` directory
+* Run Gatling with following command specifying the `gatling` directory generated in the previous step:
 
-If Vaadin pre-releases are not enabled by default, use the Maven parameter
-"-P vaadin-prerelease" or change the activation default value of the profile in pom.xml .
+```
+./gatling.sh -df <path to project directory>/gatling
+```
+
+* Inspect any errors on the command line
+
