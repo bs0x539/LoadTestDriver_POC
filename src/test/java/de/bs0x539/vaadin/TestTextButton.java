@@ -1,8 +1,8 @@
 package de.bs0x539.vaadin;
 
-import java.io.IOException;
-
 import com.vaadin.testbench.ScreenshotOnFailureRule;
+import com.vaadin.testbench.TestBenchTestCase;
+import com.vaadin.testbench.elements.ButtonElement;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,10 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.vaadin.johannest.loadtestdriver.LoadTestDriver;
 import org.vaadin.johannest.loadtestdriver.LoadTestDriverBuilder;
 
-import com.vaadin.testbench.TestBenchTestCase;
-import com.vaadin.testbench.elements.ButtonElement;
+import java.io.IOException;
 
-public class TestFontIconButton extends TestBenchTestCase {
+public class TestTextButton extends TestBenchTestCase {
 
   @Rule
   public ScreenshotOnFailureRule screenshotOnFailureRule = new ScreenshotOnFailureRule(this, true);
@@ -21,7 +20,7 @@ public class TestFontIconButton extends TestBenchTestCase {
   @Before
   public void init() {
     final WebDriver driver = new LoadTestDriverBuilder().withIpAddress(LoadTestDriver.getLocalIpAddress())
-      .withNumberOfConcurrentUsers(1).withRampUpTimeInSeconds(1).withTestName("TestFontIconButton")
+      .withNumberOfConcurrentUsers(1).withRampUpTimeInSeconds(1).withTestName("TestTextButton")
       .withPath("gatling").withResourcesPath("./gatling").withStaticResourcesIngnoring().withTestRefactoring()
       .build();
     setDriver(driver);
@@ -30,7 +29,7 @@ public class TestFontIconButton extends TestBenchTestCase {
   @Test
   public void testIt() throws IOException {
     getDriver().get("http://xps13:8080/");
-    $(ButtonElement.class).first().click();
+    $(ButtonElement.class).id("textButton").click();
     testBench().compareScreen("x");
   }
 }

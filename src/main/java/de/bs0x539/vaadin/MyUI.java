@@ -29,17 +29,26 @@ public class MyUI extends UI {
   protected void init(VaadinRequest vaadinRequest) {
     final VerticalLayout layout = new VerticalLayout();
 
-    Button button = new Button(FontAwesome.PLAY);
-    button.addClickListener(e -> {
+    final Button.ClickListener clickListener = (e) -> {
       String content = "Clicked: " + new Date().toString() + "  -  ";
       layout.addComponent(new Label(content));
-    });
-    layout.addComponent(button);
+    };
+
+    Button iconButton = new Button(FontAwesome.PLAY);
+    Button textButton = new Button("click");
+
+    // iconButton.setId("iconButton"); // Do NOT set ID. This will break this Proof Of Concept
+    textButton.setId("textButton");
+
+    iconButton.addClickListener(clickListener);
+    textButton.addClickListener(clickListener);
+    layout.addComponent(iconButton);
+    layout.addComponent(textButton);
 
     setContent(layout);
   }
 
-  @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
+  @WebServlet(urlPatterns = "/*", name = "LoadTestDriver Playground", asyncSupported = true)
   @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
   public static class MyUIServlet extends VaadinServlet {
   }
