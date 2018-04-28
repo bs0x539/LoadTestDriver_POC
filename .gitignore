@@ -4,3 +4,7 @@ target/
 .classpath
 .project
 .settings/
+error-screenshots/
+gatling/
+phantomjsdriver.log
+reference-screenshots/
