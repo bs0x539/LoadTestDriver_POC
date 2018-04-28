@@ -2,16 +2,13 @@ package de.bs0x539.vaadin;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 import java.util.Date;
 
@@ -23,27 +20,18 @@ import java.util.Date;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
+@Push
 public class MyUI extends UI {
 
   @Override
   protected void init(VaadinRequest vaadinRequest) {
-    final VerticalLayout layout = new VerticalLayout();
+    final HorizontalLayout layout = new HorizontalLayout();
+    TabSheet tabsheet = new TabSheet();
+    layout.addComponent(tabsheet);
 
-    final Button.ClickListener clickListener = (e) -> {
-      String content = "Clicked: " + new Date().toString() + "  -  ";
-      layout.addComponent(new Label(content));
-    };
-
-    Button iconButton = new Button(FontAwesome.PLAY);
-    Button textButton = new Button("click");
-
-    // iconButton.setId("iconButton"); // Do NOT set ID. This will break this Proof Of Concept
-    textButton.setId("textButton");
-
-    iconButton.addClickListener(clickListener);
-    textButton.addClickListener(clickListener);
-    layout.addComponent(iconButton);
-    layout.addComponent(textButton);
+    tabsheet.addTab(new ButtonClickCountLayout(), "Button click count");
+    tabsheet.addTab(new RegexErrorLayout(), "Regex Error");
+    tabsheet.addTab(new InvalidIDLayout(), "Invalid RPC call ID");
 
     setContent(layout);
   }
