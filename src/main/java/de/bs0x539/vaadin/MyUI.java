@@ -5,12 +5,10 @@ import javax.servlet.annotation.WebServlet;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.shared.communication.PushMode;
 import com.vaadin.ui.*;
-
-import java.util.Date;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -23,15 +21,19 @@ import java.util.Date;
 @Push
 public class MyUI extends UI {
 
+  public static final String TAB_SHEET_ELEMENT_BUTTON_CLICK_COUNT_CAPTION = "Button click count";
+  public static final String TAB_SHEET_ELEMENT_REGEX_ERROR_CAPTION = "Regex Error";
+  public static final String TAB_SHEET_ELEMENT_INVALID_RPC_CALL_ID_CAPTION = "Invalid RPC call ID";
+
   @Override
   protected void init(VaadinRequest vaadinRequest) {
     final HorizontalLayout layout = new HorizontalLayout();
     TabSheet tabsheet = new TabSheet();
     layout.addComponent(tabsheet);
 
-    tabsheet.addTab(new ButtonClickCountLayout(), "Button click count");
-    tabsheet.addTab(new RegexErrorLayout(), "Regex Error");
-    tabsheet.addTab(new InvalidIDLayout(), "Invalid RPC call ID");
+    tabsheet.addTab(new ButtonClickCountLayout(), TAB_SHEET_ELEMENT_BUTTON_CLICK_COUNT_CAPTION);
+    tabsheet.addTab(new RegexErrorLayout(), TAB_SHEET_ELEMENT_REGEX_ERROR_CAPTION);
+    tabsheet.addTab(new InvalidIDLayout(), TAB_SHEET_ELEMENT_INVALID_RPC_CALL_ID_CAPTION);
 
     setContent(layout);
   }

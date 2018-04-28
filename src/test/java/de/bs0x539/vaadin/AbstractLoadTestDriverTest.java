@@ -2,11 +2,14 @@ package de.bs0x539.vaadin;
 
 import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBenchTestCase;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.openqa.selenium.WebDriver;
 import org.vaadin.johannest.loadtestdriver.LoadTestDriver;
 import org.vaadin.johannest.loadtestdriver.LoadTestDriverBuilder;
+
+import java.io.IOException;
 
 public class AbstractLoadTestDriverTest extends TestBenchTestCase {
   // local hostname or IP address of this machine. Must not be loopback address!
@@ -23,6 +26,11 @@ public class AbstractLoadTestDriverTest extends TestBenchTestCase {
         .build();
     setDriver(driver);
     driver.get("http://" + HOSTNAME + ":8080/");
+  }
+
+  @After
+  public void teardown() throws IOException {
+    testBench().compareScreen("");
   }
 
 }
