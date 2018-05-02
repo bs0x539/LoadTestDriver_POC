@@ -13,14 +13,14 @@ verify:
     - service
 
 test:
-  stage: verify
+  stage: test
   script:
     - mvn -B clean test
   tags:
     - service
 
 build:
-  stage: verify
+  stage: build
   script:
     - mvn -B clean install
   artifacts:
