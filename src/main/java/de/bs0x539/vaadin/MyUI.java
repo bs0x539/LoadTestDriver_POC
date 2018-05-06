@@ -24,6 +24,7 @@ public class MyUI extends UI {
   public static final String TAB_SHEET_ELEMENT_BUTTON_CLICK_COUNT_CAPTION = "Button click count";
   public static final String TAB_SHEET_ELEMENT_REGEX_ERROR_CAPTION = "Regex Error";
   public static final String TAB_SHEET_ELEMENT_INVALID_RPC_CALL_ID_CAPTION = "Invalid RPC call ID";
+  public static final String TAB_SHEET_ELEMENT_CHECKBOX = "CheckBox";
 
   @Override
   protected void init(VaadinRequest vaadinRequest) {
@@ -34,6 +35,7 @@ public class MyUI extends UI {
     tabsheet.addTab(new ButtonClickCountLayout(), TAB_SHEET_ELEMENT_BUTTON_CLICK_COUNT_CAPTION);
     tabsheet.addTab(new RegexErrorLayout(), TAB_SHEET_ELEMENT_REGEX_ERROR_CAPTION);
     tabsheet.addTab(new InvalidIDLayout(), TAB_SHEET_ELEMENT_INVALID_RPC_CALL_ID_CAPTION);
+    tabsheet.addTab(new CheckboxLayout(), TAB_SHEET_ELEMENT_CHECKBOX);
 
     setContent(layout);
   }
