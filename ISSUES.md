@@ -37,7 +37,7 @@ This causes warnings when compiling the Scala scripts and errors when executing 
 This concerns RPC calls to `v.v` with `positionx` and `positiony` objects inside. When removing those two objects (while retaining the "real" RPC call to e.g. `com.vaadin.shared.ui.button.ButtonServerRpc`) from the Scala script, the request runs fine.
 I ended up, automating this procedure via simple bash and sed magic, but thats far from a clean solution.
 
-#### 4. Regular expression build using unescaped special chars
+#### 4. Regular expression built using unescaped special chars
 
 DOM IDs containing Special characters are not escaped properly before being put into the regular expression to extract Vaadin's internal ID of an element.
 This happens, if a Vaadin element is being referenced by it's (DOM) ID and that ID contains special chars, like e.g. `$`.
