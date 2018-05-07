@@ -1,7 +1,7 @@
 package de.bs0x539.vaadin;
 
-import com.vaadin.testbench.ScreenshotOnFailureRule;
-import com.vaadin.testbench.TestBenchTestCase;
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -9,7 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.vaadin.johannest.loadtestdriver.LoadTestDriver;
 import org.vaadin.johannest.loadtestdriver.LoadTestDriverBuilder;
 
-import java.io.IOException;
+import com.vaadin.testbench.ScreenshotOnFailureRule;
+import com.vaadin.testbench.TestBenchTestCase;
 
 public class AbstractLoadTestDriverTest extends TestBenchTestCase {
   // local hostname or IP address of this machine. Must not be loopback address!
