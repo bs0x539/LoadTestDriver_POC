@@ -44,7 +44,7 @@ Execute Load Tests with Gatling
 * Run Gatling with following command specifying the `gatling` directory generated in the previous step:
 
 ```
-./gatling.sh -df <path to project directory>/gatling
+./gatling.sh -sf <path to project directory>/gatling
 ```
 
 * Inspect any errors on the command line

@@ -14,7 +14,7 @@ import com.vaadin.testbench.TestBenchTestCase;
 
 public class AbstractLoadTestDriverTest extends TestBenchTestCase {
   // local hostname or IP address of this machine. Must not be loopback address!
-  private static final String HOSTNAME = "CH";
+  private static final String HOSTNAME = "10.0.2.50";
 
   @Rule
   public ScreenshotOnFailureRule screenshotOnFailureRule = new ScreenshotOnFailureRule(this, true);

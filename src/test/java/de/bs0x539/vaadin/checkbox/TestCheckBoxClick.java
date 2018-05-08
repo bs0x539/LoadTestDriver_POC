@@ -23,6 +23,7 @@ public class TestCheckBoxClick extends AbstractLoadTestDriverTest {
   public void testIt() {
     $(TabSheetElement.class).first().openTab(TAB_SHEET_ELEMENT_CHECKBOX);
 
+    $(CheckBoxElement.class).first().click();
     $(ButtonElement.class).first().click();
     $(CheckBoxElement.class).id(CheckboxLayout.ELEMENT_ID).click();
   }
